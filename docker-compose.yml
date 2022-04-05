@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  development:
+    profiles:
+      - development
+    build:
+      context: .
+      dockerfile: webserver.dockerfile
+      target: development
+    ports:
+      - "9997:9999"
+  builder:
+    profiles:
+      - builder
+    build:
+      context: .
+      dockerfile: webserver.dockerfile
+      target: builder
+    ports:
+      - "9998:9999"
+  production:
+    profiles:
+      - production
+    build:
+      context: .
+      dockerfile: webserver.dockerfile
+      target: production
+    ports:
+      - "9999:9999"
